@@ -1,0 +1,201 @@
+html, body
+{
+    margin:      0;
+    padding:     0;
+    width:       100%;
+    height:      100%;
+    font-family: sans-serif;
+}
+
+.clear
+{
+    clear: both;
+}
+
+#spinner
+{
+    position: absolute;
+    display: none;
+}
+
+#hMenu
+{
+    position:         fixed;
+    z-index:          100001;
+    width:            15%;
+    height:           100%;
+    background-color: black;
+    display:          table;
+    text-align:       center;
+    box-shadow:       0 0 10px black;
+}
+
+#hMenu ul
+{
+    display:        table-cell;
+    margin:         0;
+    padding:        0;
+    text-align:     center;
+    vertical-align: middle;
+}
+
+#hMenu ul li
+{
+    list-style:    none;
+    width:         125px;
+    padding:       5px;
+    border-radius: 5px;
+    transition:    background .2s;
+    margin: 0 auto;
+}
+
+#hMenu ul li:hover
+{
+    background-color: dimgray;
+}
+
+#hMenu ul li a
+{
+    color:           white;
+    text-decoration: none;
+}
+
+#hMenu form
+{
+    display:        table-cell;
+    vertical-align: middle;
+    text-align:     right;
+}
+
+#searchBar
+{
+    width:         30%;
+    padding:       12px 7px;
+    border-radius: 10px;
+    border:        0;
+    position:      fixed;
+    z-index:       100000;
+    top:           5%;
+    left:          35%;
+    background-color: rgba(0, 0, 0, .75);
+    text-align: center;
+    
+}
+
+#searchBox
+{
+    margin-left: 10px;
+    width: 90%;
+    height: 25px;
+    border-radius: 7px;
+    border: none;
+    text-align: center;
+}
+
+#searchBox:focus
+{
+    outline: none;
+    box-shadow: 0 0 20px #3399FF;
+}
+
+main
+{
+    width:  100%;
+    height: 100%;
+}
+
+#map
+{
+    width:  100%;
+    height: inherit;
+}
+
+.secondLevelList
+{
+    position: fixed;
+    top: 0;
+    left: 15%;
+    width: 250px;
+    height: 100%;
+    background-color: white;
+    z-index: 100000;
+    margin: 0;
+    padding: 5px;
+    display: none;
+    box-shadow: 0 0 10px black;
+    overflow: auto;
+}
+
+.secondLevelList li
+{
+    list-style: none;
+    width: 100%;
+    margin: 0 auto 10px;
+    transition: .1s background, .1s color, .3s height;
+    border-radius: 10px;
+}
+
+.secondLevelList li:hover
+{
+    background-color: black;
+    color: white;
+}
+
+.secondLevelList li div
+{
+    height: 50px;
+    width: 100%;
+    display: table-cell;
+    vertical-align: middle;
+    padding: 0 10px;
+    line-height: 25px;
+}
+
+.secondLevelList li img, img.minilogo
+{
+    border-radius: 50%;
+    box-shadow:    0 0 10px black;
+    transform:     rotate(-7deg);
+    
+    overflow:      hidden;
+    width:         25px;
+    height:        25px;
+    
+    margin-right: 10px;
+    
+    float: left;
+}
+
+img.minilogo
+{
+    margin: 5px;
+}
+
+li.subjectItem
+{
+
+    border: 1px solid black;
+}
+
+.subjectItem span
+{
+    font-weight: bold;
+}
+
+.subjectItem .description
+{
+    display: none;
+}
+
+li.subjectItemActive
+{
+    height: 200px;
+    border: 1px solid dimgray;
+}
+
+.subjectItemActive .description
+{
+    font-weight: normal;
+    font-size: 12px;
+    display: block;
+}
