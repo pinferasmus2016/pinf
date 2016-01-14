@@ -95,7 +95,8 @@ if (isset($_GET["source"]))
                     $words = explode(' ', strtolower($row["keywords"]));
                     
                     //If there is at least one match, store `id` to retrieve later
-                    if (!empty(array_intersect($search, $words)))
+                    $intersect = array_intersect($search, $words);
+                    if (!empty($intersect))
                         $id_list[] = $row["id"];
                 }
                 
