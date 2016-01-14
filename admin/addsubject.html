@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Add subject</title>
+        
+        <link rel="stylesheet" href="../css/admin.css" type="text/css" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+        <script src="https://maps.googleapis.com/maps/api/js"></script>
+        <script src="../js/jquery-2.1.4.min.js"></script>
+        <script src="../js/admin.js"></script>
+    </head>
+    <body>
+        <header>
+            <div id="hMenu">
+                <div id="spinner">
+                    <img src="../images/loading.gif" alt="Loading spinner" />
+                </div>
+                <ul>
+                    <li><a href="../index.html">Main</a></li>
+                    <li><a href="adduniversity.html">Add university</a></li>
+                    <li><a href="adddegree.html">Add degree</a></li>
+                    <li><a href="addsubject.html">Add subject</a></li>
+                </ul>
+            </div>
+        </header>
+        <main>
+            <form method="post" action="insertsubject.php">
+                <label for="university">University</label>
+                <select name="university" required>
+                    
+                </select>
+                <label for="degree">Degree</label>
+                <select name="degree" required>
+
+                </select>
+                <label for="subject_code">Subject code</label>
+                <input type="text" name="subject_code" required />
+                <label for="subject_name">Subject name</label>
+                <input type="text" name="subject_name" required />
+                <label for="subject_ects">ECTS Credits</label>
+                <input type="number" name="subject_ects" required />
+                <label for="subject_language">Subject language [English, Czech...]</label>
+                <input type="text" name="subject_language" required />
+                <label for="subject_semester">Subject semester [Winter, Summer]</label>
+                <input type="text" name="subject_semester" required />
+                <label for="subject_keywords">Keywords</label>
+                <input type="text" name="subject_keywords" required />
+                
+                <input type="submit" value="Add subject" />
+            </form>
+        </main>
+        <script>
+            $(function()
+            {
+                getUniversities();
+                
+                $("select[name='university']").change(function()
+                {
+                    getDegrees($("select[name='university']").val());
+                });
+            });
+        </script>
+    </body>
+</html>
