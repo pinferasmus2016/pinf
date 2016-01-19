@@ -199,3 +199,29 @@ li.subjectItemActive
     font-size: 12px;
     display: block;
 }
+
+form#contact
+{
+    padding: 15px;
+    margin-left: 16%;
+}
+
+#contact label
+{
+    font-weight: bold;
+}
+
+#contact input, #contact textarea
+{
+    display: block;
+    padding: 10px;
+    border-radius: 7px;
+    margin-bottom: 15px;
+    border: 1px solid dimgray;
+}
+
+#contact input:focus, #contact textarea:focus
+{
+    outline: none;
+    box-shadow 0 0 20px dimgray;
+}

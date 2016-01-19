@@ -84,7 +84,7 @@ if (isset($_GET["source"]))
                 $id_list = array();
                 
                 //Separate keywords
-                $search = explode(' ', strtolower($_GET["keywords"]));
+                $search = explode(' ', strtolower(trim($_GET["keywords"])));
                 
                 //Get keywords
                 $query = $mysqli->query("SELECT `id`, `keywords` FROM `subjects`");

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Contact</title>
+        
+        <link rel="stylesheet" href="css/main.css" type="text/css" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+        <script src="https://maps.googleapis.com/maps/api/js"></script>
+        <script src="js/jquery-2.1.4.min.js"></script>
+        <script src="js/main.js"></script>
+    </head>
+    <body>
+        <header>
+            <div id="hMenu">
+                <ul>
+                    <li><a href="index.html">Main</a></li>
+                    <li id="countriesButton"><a href="#">Countries</a></li>
+                    <li id="universitiesButton"><a href="#">Universities</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </header>
+        <main>
+            <form id="contact" action="contact.php" method="POST">
+                <label for="name">Name*</label>
+                <input type="text" name="name" required />
+                <label for="mail">E-mail*</label>
+                <input type="email" name="mail" required />
+                <label for="message">Message*</label>
+                <textarea name="message" required></textarea>
+                <input type="submit" />
+                <input type="reset" />
+            </form>
+        </main>
+    </body>
+</html>
