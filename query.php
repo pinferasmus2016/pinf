@@ -30,14 +30,22 @@ if (isset($_GET["source"]))
         case "universities":
             //Get universities: if country is set, then filter by id_country. In other case, get the full list.
             if (isset($_GET["country"]))
-                $query = $mysqli->query("SELECT * FROM `universities` WHERE `id_country` = " . $_GET["country"]);
+            {
+                if ($stmt = $mysqli->prepare("SELECT * FROM `universities` WHERE `id_country` = ?"))
+                {
+                    $stmt->bind_param("i", $_GET["country"]);
+                    $stmt->execute();
+                    $query = $stmt->get_result();
+                    $stmt->close();
+                }
+            }
             else
                 $query = $mysqli->query("SELECT * FROM `universities`");
             
             //Parse result to JSON
             $rows = array();
             
-            while ($row = mysqli_fetch_assoc($query))
+            while ($row = $query->fetch_assoc())
                 $rows[] = $row;
             
             echo json_encode($rows);
@@ -47,7 +55,13 @@ if (isset($_GET["source"]))
             //Get degrees: if university is set, then filter by id_university. In other case, get the full list.
             if (isset($_GET["university"]))
             {
-                $query = $mysqli->query("SELECT * FROM `degrees` WHERE `id` in (SELECT `id_degree` FROM `uni_deg_sub` WHERE `id_university`=" . $_GET["university"] . ")");
+                if ($stmt = $mysqli->prepare("SELECT * FROM `degrees` WHERE `id` in (SELECT `id_degree` FROM `uni_deg_sub` WHERE `id_university`= ?)"))
+                {
+                    $stmt->bind_param("i", $_GET["university"]);
+                    $stmt->execute();
+                    $query = $stmt->get_result();
+                    $stmt->close();
+                }
             
                 //Parse result to JSON
                 $rows = array();
@@ -63,12 +77,18 @@ if (isset($_GET["source"]))
             //Get subjects. University and Degree need to be specified
             if (isset($_GET["university"]) && isset($_GET["degree"]))
             {
-                $query = $mysqli->query("SELECT * FROM `subjects` WHERE `id` in (SELECT `id_subject` FROM `uni_deg_sub` WHERE `id_university`=" . $_GET["university"] . " and `id_degree`=" . $_GET["degree"] . ")");
+                if ($stmt = $mysqli->prepare("SELECT * FROM `subjects` WHERE `id` in (SELECT `id_subject` FROM `uni_deg_sub` WHERE `id_university`=? and `id_degree`=?)"))
+                {
+                    $stmt->bind_param('ii', $_GET["university"], $_GET["degree"]);
+                    $stmt->execute();
+                    $query = $stmt->get_result();
+                    $stmt->close();
+                }
             
                 //Parse result to JSON
                 $rows = array();
 
-                while ($row = mysqli_fetch_assoc($query))
+                while ($row = $query->fetch_assoc())
                     $rows[] = $row;
 
                 echo json_encode($rows);
@@ -78,7 +98,7 @@ if (isset($_GET["source"]))
             
         case "search":
             //Get subjects that matches the keywords.
-            if (isset($_GET["keywords"]))
+            if (isset($_GET["keywords"]) && $_GET["keywords"] != " ")
             {
                 //Array where we will store the matching subjects
                 $id_list = array();
