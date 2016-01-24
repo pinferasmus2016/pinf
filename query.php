@@ -71,6 +71,23 @@ if (isset($_GET["source"]))
 
                 echo json_encode($rows);
             }
+            else
+            {
+                if ($stmt = $mysqli->prepare("SELECT * FROM `degrees`"))
+                {
+                    $stmt->execute();
+                    $query = $stmt->get_result();
+                    $stmt->close();
+                }
+            
+                //Parse result to JSON
+                $rows = array();
+
+                while ($row = mysqli_fetch_assoc($query))
+                    $rows[] = $row;
+
+                echo json_encode($rows);
+            }
             break;
             
         case "subjects":

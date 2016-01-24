@@ -46,7 +46,7 @@ function getUniversities(code)
 function getDegrees(code)
 {
     toggleSpinner();
-    var url = "../query.php?source=degrees" + (code != ""? "&university=" + code:"");
+    var url = "../query.php?source=degrees";// + (code != ""? "&university=" + code:"");
     
     $(function()
     {

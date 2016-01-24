@@ -242,6 +242,10 @@ $(function()
     $("#countriesButton").click(getCountries);
     $("#universitiesButton").click(function(){getUniversities();});
     $("#searchbar").submit(search);
+    $("#mglass").click(function()
+    {
+        $("#searchBar").submit();
+    });
 
     google.maps.event.addDomListener(window, 'load', mapInit);
 });
